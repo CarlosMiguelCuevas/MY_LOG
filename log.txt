@@ -1,0 +1,634 @@
+//2016-02-09T09:45 ----------------------------------
+@training @issue86 @definicion_subtareas
+I divided the issue in some topics(questions) that I have to look for(answer):
+-Where should I put the code about the calendar inside the project?   
+-How can I add a service in the project?
+-What privileges are needed to create events in a calendar?
+-Where are this privileges  declared in the project? Or how the user grant this privileges? 
+-What are the API calls to add events to a calendar ?
+-Can a calendar be managed using only API calls?
+
+ ---------------------------------------------------------------------//
+
+//2016-02-09T16:33 ----------------------------------
+@trining @issue86 @sub_tareas_research
+
+I answered some of them
+
+-Where should I put the code about the calendar inside the project?   
+
+I should do it inside a service according to the documentation: https://docs.angularjs.org/guide/services
+
+I tried it in a clean project an it works.
+
+-How can I add a service in the project?
+
+I tried to replicate the steps to include the service into the project, 
+but I get this error when I try to inject the service into the controller: 
+"Error: [$injector:unpr] Unknown provider: TestServiceProvider <- TestService <- WorkshopDialogController
+http://errors.angularjs.org/1.4.8/$injector/unpr?p0=TestServiceProvider%20%3C-%20TestService%20%3C-%20WorkshopDialogController
+minErr/<@http://localhost:3000/bower_components/angular/angular.js:68:12
+createInjector/providerCache.$injector<@http://localhost:3000/bower_components/angular/angular.js:4334:19
+getService@http://localhost:3000/bower_components/angular/angular.js:4482:39
+createInjector/instanceCache.$injector<@http://localhost:3000/bower_components/angular/angular.js:4339:28
+getService@http://localhost:3000/bower_components/angular/angular.js:4482:39
+invoke@http://localhost:3000/bower_components/angular/angular.js:4514:1
+instantiate@http://localhost:3000/bower_components/angular/angular.js:4531:27
+$ControllerProvider/this.$get</<@http://localhost:3000/bower_components/angular/angular.js:9197:18
+resolveSuccess@http://localhost:3000/bower_components/angular-bootstrap/ui-bootstrap-tpls.js:4142:34
+processQueue@http://localhost:3000/bower_components/angular/angular.js:14792:28
+scheduleProcessQueue/<@http://localhost:3000/bower_components/angular/angular.js:14808:27
+$RootScopeProvider/this.$get</Scope.prototype.$eval@http://localhost:3000/bower_components/angular/angular.js:16052:16
+$RootScopeProvider/this.$get</Scope.prototype.$digest@http://localhost:3000/bower_components/angular/angular.js:15870:15
+$RootScopeProvider/this.$get</Scope.prototype.$apply@http://localhost:3000/bower_components/angular/angular.js:16160:13
+done@http://localhost:3000/bower_components/angular/angular.js:10589:36
+completeRequest@http://localhost:3000/bower_components/angular/angular.js:10787:7
+requestLoaded@http://localhost:3000/bower_components/angular/angular.js:10728:1
+" 
+I tried to put the service within other module, and put that new module as a dependency of the main module "trainingApp" in the file "app.js", but the error remains. 
+
+I tried to put the service within the "trainingApp" module, and I moved the file to the “util” directory where there are other service and the error remains. 
+
+A asked for help and Tony told me that might be something about the grunt file. I havent read anything about it. 
+
+After failing in the attempt to put the code of the example within a service I decided to put the code inside the controller just to make me sure that it works inside the project, but I got this error “Error: origin_mismatch”  
+I didn't search anything about it because I had to leave.
+ ---------------------------------------------------------------------//
+
+//2016-02-22T11:07 ----------------------------------
+@academy @daily_meeting
+
+1- What you did to change the world yesterday?
+Finished my week 2 homework, I started the Coursea “Learning to Learn” course.
+
+2- How you are going to crush it today?
+The goal is finish the first part of the course today, and if I can, start the second one.
+I also have to finish the julio's homework, about communication.  
+
+3- How you are going to blast through any obstacles unfortunate enough to be standing in your way?
+Being focused on my work and ask if I have any question.
+ ---------------------------------------------------------------------//
+//2016-02-22T19:00 ----------------------------------
+@academy @EOD
+
+I did finished julio's homework, I took a git class with the rest of the interns. 
+I couldn't finish the week 1 of the course. the goal for tonight is read some pages from the book, the pragmatic programmer. 
+ ---------------------------------------------------------------------//
+//2016-02-23T10:08 ----------------------------------
+@academy @daily_meeting
+
+1.- What you did to change the world yesterday?
+I finished julio's homework, I took a git class with the rest of the interns. 
+
+2.- How you are going to crush it today?
+Today I will work on the home work 3, and also I have to finish at least the part one of the monthly homework course. And I have to read at least 40 pages of the book. Today is a busy day.  
+
+3.- How are you going to blast through any obstacles unfortunate enough to be standing in your way?
+I will stay focus on the goal, and I will work in team. 
+ ---------------------------------------------------------------------//
+//2016-02-23T10:08 ----------------------------------
+@academy @problem_solve @EOD
+
+
+Today I worked on the home work 3: foked the repo, cloned, and also ran it with maven, it had a problem with the "source", I added
+
+<build>
+	<plugins>
+	    <plugin>
+		<groupId>org.apache.maven.plugins</groupId>
+		<artifactId>maven-compiler-plugin</artifactId>
+		<version>2.3.2</version>
+		<configuration>
+		    <source>1.7</source>
+		    <target>1.7</target>
+		</configuration>
+	    </plugin>
+	</plugins>
+</build>
+
+to the POM and it worked.
+I read the first text of the homework 3
+
+I also I started the part one of the monthly homework course.
+
+I did't read the 40 pages of the book.  
+
+
+ ---------------------------------------------------------------------//
+//2016-03-05T11:023 ----------------------------------
+@academy @daily_meeting
+
+
+1- What you did to change the world yesterday?
+I finished the week 3 of the cource.
+
+2- How you are going to crush it today?
+Today I will finish the cource. I will finish the report about the ideas and the pretotiping. I will watch all the videos of the first block and write about them. the only thing that will remainst for tomorow will be the reading of the book and watch the second block of videos.  
+
+3- How you are going to blast through any obstacles unfortunate enough to be standing in your way?
+I will use the pomodore technique to overcome te procrastination, also I will watch the vidoes in speed 1.25 to watch as much videas as I can.
+
+ ---------------------------------------------------------------------//
+//2016-03-10T09:43 ----------------------------------
+@academy @phase2 @daily_meeting 
+
+1- What you did to change the world yesterday?
+I looked for open source projects to work in. I also register my self in the code wars. I also read about the SOLID principles.
+
+2- How you are going to crush it today?
+Today I will finish the SOLID principles, and their examples. I will work in at least two code wars' algorithms. I will read some pages of the pragmatic programmer. I have to set up at least one project.
+
+3- How you are going to blast through any obstacles unfortunate enough to be standing in your way?
+I will use the pomodoro technique, and I'll be focused. also I will follow and shedule.
+ ---------------------------------------------------------------------//
+//2016-03-10T09:43 ----------------------------------
+@academy @phase2 @SOLID @polimorfismo
+
+S ingle responsability principle (SRP)
+O pen close principle (OCP)
+L iskov substitution principle (LSP)
+I nterface segregation principle (ISP)
+D ependency inversion principle (DIP)
+
+SRP  states that there should never be more than one reason for a class to change. This means that you should design your classes so that each has a single purpose. This does not mean that each class should have only one method but that all of the members in the class are related to the class's primary function. Where a class has multiple responsibilities, these should be separated into new classes.
+
+OCP  specifies that software entities (classes, modules, functions, etc.) should be open for extension but closed for modification. The "closed" part of the rule states that once a module has been developed and tested, the code should only be adjusted to correct bugs. The "open" part says that you should be able to extend existing code in order to introduce new functionality. As with the SRP, this principle reduces the risk of new errors being introduced by limiting changes to existing code.
+
+LSP es el principio mas coplicado. Primero, este tiene que ver con la abstaraccion de los objetos. se supone que si utilizas un objeto o1 de una tal clase c1 y este hereda de otra clase c2 (clase padre), en el programa general donde se utiliza este objeto o1 se puede utilizar en los metodos como argumento objetos de la clase c2 (clase padre) gracias al **polimorfismo, sin que el funcionamiento del programa se altere. si es necesiario modificar el programa queire decir que la abstraccion ce c1 est aml echa, posiblemente no sea prudente que herede de c2. "model your classes based on behaviours not on properties". como vemos este principio regula la abstraccion de los objetos mas que el comportamiento/codificación del programa general.    
+
+ISP  specifies that clients should not be forced to depend upon interfaces that they do not use. This rule means that when one class depends upon another, the number of members in the interface that is visible to the dependent class should be minimised. That means you should separate the interface in two or more cohesive interfaces.
+
+DIP  makes two statements. The first is that high level modules should not depend upon low level modules. Both should depend upon abstractions. The second part of the rule is that abstractions should not depend upon details. Details should depend upon abstractions. The DIP primarily relates to the concept of layering within applications, where lower level modules deal with very detailed functions and higher level modules use lower level classes to achieve larger tasks. The principle specifies that where dependencies exist between classes, they should be defined using abstractions, such as interfaces, rather than by referencing classes directly. This reduces fragility caused by changes in low level modules introducing bugs in the higher layers. 
+Again thaks to polymorfism we can achiev this, because using am abstracction between the general calse and the low lebel class we can make taht que high level clase be reusable. example:
+
+class lectura implemneta/hereda lectura
+class escritura implementa/hereda escritura
+class proceso 
+class abstract_class/inteface lectura/escritura
+
+class main instancia proceso, instancia lectura y escritura, manda lectura y escritura a la clase proceso a travez del constructor o con accesores.
+
+dentr de la clase proceso tiene accesores que asignan el objeto de escritura y lectura a unavariable de tipo interfaz/claseabstracta lectura /escritura respectivamente (polimorfismo)
+
+así si cambiamos de objetos de lectura escritura en el main, si estos heredan/implementan lectura/escritura el programa sigue. como se ve tien mucho que ver con lo de LSP. asi tanto la clase de altoo nivel y de bajo nivel son reutilizables.
+
+**Polimorfismo: "El polimorfismo es una relajación del sistema de tipos, de tal manera que una referencia a una clase (atributo, parámetro o declaración local o elemento de un vector) acepta direcciones de objetos de dicha clase y de sus clases derivadas (hijas, nietas, …)." y "es hacer que un objeto se comporte como si fera de otro tipo" arriba se dieron varios ejemplos de polimorfismo en lso SOLID's principles. el polimosrfismo es util en los lenguajes fuertemente tipados.
+
+
+ 
+
+ ---------------------------------------------------------------------//
+//2016-03-15T11:52 ----------------------------------
+@academy @phase2  
+
+1- What you did to change the world yesterday?
+I finished the homework 1 of the second phase, I built the Angular project and starting diving into the code of ng-repeat.
+
+2- How you are going to crush it today?
+Today I will run the jhipster project. Also will change the protractor project for a ORM in android or java. Also I have to implement the jhipster project. Also I have to chek the code of angular  btter. Also I wil make a Kata. 
+
+3- How you are going to blast through any obstacles unfortunate enough to be standing in your way?
+I'll apply the pomodoro technique.
+ 
+ ---------------------------------------------------------------------//
+//2016-03-15T14:25 ----------------------------------
+@academy @phase2 @config @problem_solve
+
+la variable de entorno JAVA_HOME no muestra donde esta el JDk, la variable de entrono PATH tampoco lo muestra.
+Tambien instalé JUNIT, guardé el .jar en la variable de entorno JUNIT_HOME. en /etc/environment
+
+solucion:
+modifiqué el archivo /etc/environment ahi declaré la variable JAVA_HOME
+
+ 
+ ---------------------------------------------------------------------//
+//2016-03-18T11:28 ----------------------------------
+@academy @phase2 @daily_meeting 
+
+
+1- What you did to change the world yesterday?
+I participated in a pair programming(incognite mode). I also took a workshop, deployment something.
+
+2- How you are going to crush it today?
+I will read the text about diving in opensource code. I will make Jhipste run. I will pick a issue.
+
+3- How you are going to blast through any obstacles unfortunate enough to be standing in your way?
+Today my day wil be short, soy I wont waste time.
+
+
+ 
+ ---------------------------------------------------------------------//
+//2016-03-21T10:42 ----------------------------------
+@academy @phase2 @daily_meeting 
+
+
+1- What you did to change the world yesterday?
+I made a PR to delet a line in angular, mostly to boost my confidence. I also check som issues out but I couldn't fix none. 
+
+2- How you are going to crush it today?
+I will work till 5:00 then I will read the book because I have to finish it on thursday. About the work, I will work on solving an issue tha is already fixed.
+I will keep a log about the movments I did in the code.
+
+3- How you are going to blast through any obstacles unfortunate enough to be standing in your way?
+I have to be focused. I will use the pomodoro technique.
+
+
+ 
+ ---------------------------------------------------------------------//
+//2016-03-22T09:33 ----------------------------------
+@academy @phase2 @daily_meeting 
+
+
+1- What you did to change the world yesterday?
+I found an PR that soved an ISSUE that I thik is not hard to follow, it is about the filter number, wen you use a locale, with a config  lgSize of 3 and a gSize of 2 it return the wrong result. it spect 100 and get 1,00. 
+
+2- How you are going to crush it today?
+Today I will finish this PR, and I will work in other PR, in arduino's. Also I will read the book javascript the good parts. I will have the pair with my mentors.
+
+3- How you are going to blast through any obstacles unfortunate enough to be standing in your way?
+I have to be focused. I will use the pomodoro technique.
+
+
+ 
+ ---------------------------------------------------------------------//
+//2016-03-22T13:15 ----------------------------------
+@academy @phase2 @pullRequest @PR @solvedIssue @openSource
+
+I found a Solved Issue https://github.com/angular/angular.js/issues/14289
+in which the problem was the format trown by the filter "number", when you set the parameters 
+gSize = 2,   // number of digits in each group of separated digits
+lgSize = 3,  // number of digits in the last group of digits before the decimal separator 
+in the locale file
+
+that means that an enter like this 100000 should be 1,00,000 and an enter like 100 should be 100. in the first case it does it correctly but it fails in the second case. it trows 1,00. 
+
+I made a test case firs. in the file "./angular.js/test/ng/filter/filtersSpec.js":
+
+//test related to issue #14289
+
+    it('should format according to different patterns', function() {
+
+          pattern.gSize = 2;
+          var num = formatNumber(100, pattern, ',', '.');
+          expect(num).toBe('100');
+
+        });
+//end issue test
+
+Then I modified the file "./angular.js/src/ng/filter/filters.js" 
+within the function "function formatNumber(number, pattern, groupSep, decimalSep, fractionSize) {" there is a coment : 
+// format the integer digits with grouping separators
+
+beneth that the code was like this: 
+    var groups = [];
+    if (digits.length > pattern.lgSize) {
+      groups.unshift(digits.splice(-pattern.lgSize).join(''));
+       
+    }
+    while (digits.length > pattern.gSize) {
+          groups.unshift(digits.splice(-pattern.gSize).join(''));
+    }
+
+    if (digits.length) {
+      groups.unshift(digits.join(''));
+    }
+
+
+I moved the While inside the if blocke
+
+    var groups = [];
+    if (digits.length > pattern.lgSize) {
+      groups.unshift(digits.splice(-pattern.lgSize).join(''));
+       
+	while (digits.length > pattern.gSize) {
+          groups.unshift(digits.splice(-pattern.gSize).join(''));
+    	}
+
+    }
+    
+    if (digits.length) {
+      groups.unshift(digits.join(''));
+    }
+
+Because when it was out side the if, the wile entered even when the lenght of the number wasen't larger than the number of the lgSize which states the first separation.
+
+I checked the PR the solution was diferent but still good, it only chnage the if statement, instead of > it is >=.
+ 
+ ---------------------------------------------------------------------//
+//2016-03-22T09:33 ----------------------------------
+@academy @phase2 @daily_meeting @PR @Issue
+
+
+1- What you did to change the world yesterday?
+yesterday I finished working on the issue with solution (the exercise you suggested us to do), I did find the solution by my own but it was a little bit different than the solution proposed in Github. It passed the testes though. I also start looking for other issue to work on, and I decided to work in an issue in the Arduino's IDE; it seems easy to follow, they want to add some padding in the text editor Area. I haven't have troubles until now. 
+
+
+2- How you are going to crush it today?
+I will work on the arduino's Issue. I also found a TODO easy to do : on line 1373, in the file /Arduino/app/procesing/app/Editor.java
+
+
+3- How you are going to blast through any obstacles unfortunate enough to be standing in your way?
+I will work till 5 pm, on this issues, and then I will read about javascript the good parts
+
+
+ 
+ ---------------------------------------------------------------------//
+//2016-04-01T09:33 ----------------------------------
+@academy @phase2 @daily_meeting 
+
+
+1- What you did to change the world yesterday?
+I worked on the Arduino's Issue, but I couldn't finish. I read some pages of the book "javascript the good parts", I'm on the functiosn part. 
+
+2- How you are going to crush it today?
+I'm going to work on the issu, but at 4 i will continue reading. Ialso whatn to read about Automation in javascript or ruby.
+
+
+3- How you are going to blast through any obstacles unfortunate enough to be standing in your way?
+beeing focused and not wasting time.
+
+ 
+ ---------------------------------------------------------------------//
+//2016-04-14T09:33 ----------------------------------
+@issue @EOD @PATH @variable @environment_variable 
+
+I had a problem, configouring the environment  varible PATH, I modified the file /etc/environment And I added severls PATH declaration, I coulden't access the session after that, It seems I can't be more than one Path declaration.   
+
+ 
+ ---------------------------------------------------------------------//
+//2016-04-15T09:33 ----------------------------------
+@academy @pahse3 @dayly_meeting
+
+Istarted working with grunt, I'm improving the grunt tasks, and the dependencies in the project.
+I worked in the code jam phace 1A, this are the problems:
+2)
+Problem
+
+When Sergeant Argus's army assembles for drilling, they stand in the shape of an N by N square grid, with exactly one soldier in each cell. Each soldier has a certain height.
+
+Argus believes that it is important to keep an eye on all of his soldiers at all times. Since he likes to look at the grid from the upper left, he requires that:
+
+    Within every row of the grid, the soldiers' heights must be in strictly increasing order, from left to right.
+    Within every column of the grid, the soldiers' heights must be in strictly increasing order, from top to bottom. 
+
+Although no two soldiers in the same row or column may have the same height, it is possible for multiple soldiers in the grid to have the same height.
+
+Since soldiers sometimes train separately with their row or their column, Argus has asked you to make a report consisting of 2*N lists of the soldiers' heights: one representing each row (in left-to-right order) and column (in top-to-bottom order). As you surveyed the soldiers, you only had small pieces of paper to write on, so you wrote each list on a separate piece of paper. However, on your way back to your office, you were startled by a loud bugle blast and you dropped all of the pieces of paper, and the wind blew one away before you could recover it! The other pieces of paper are now in no particular order, and you can't even remember which lists represent rows and which represent columns, since you didn't write that down.
+
+You know that Argus will make you do hundreds of push-ups if you give him an incomplete report. Can you figure out what the missing list is?
+Input
+
+The first line of the input gives the number of test cases, T. T test cases follow. Each consists of one line with an integer N, followed by 2*N-1 lines of N integers each, representing the lists you have, as described in the statement. It is guaranteed that these lists represent all but one of the rows and columns from a valid grid, as described in the statement.
+Output
+
+For each test case, output one line containing Case #x: y, where x is the test case number (starting from 1) and y is a list of N integers in strictly increasing order, representing the missing list.
+Limits
+
+1 ≤ T ≤ 50.
+1 ≤ all heights ≤ 2500.
+The integers on each line will be in strictly increasing order.
+It is guaranteed that a unique valid answer exists.
+Small dataset
+
+2 ≤ N ≤ 10.
+Large dataset
+
+2 ≤ N ≤ 50.
+Sample
+
+Input
+  	
+Output
+ 
+
+1
+3
+1 2 3
+2 3 5
+3 5 6
+2 3 4
+1 2 3
+
+	
+
+Case #1: 3 4 6
+
+In the sample case, the arrangement must be either this:
+1 2 3
+2 3 4
+3 5 6
+
+or this:
+1 2 3
+2 3 5
+3 4 6
+
+In either case, the missing list is 3 4 6.
+
+
+3) 
+Problem
+
+You are a teacher at the brand new Little Coders kindergarten. You have N kids in your class, and each one has a different student ID number from 1 through N. Every kid in your class has a single best friend forever (BFF), and you know who that BFF is for each kid. BFFs are not necessarily reciprocal -- that is, B being A's BFF does not imply that A is B's BFF.
+
+Your lesson plan for tomorrow includes an activity in which the participants must sit in a circle. You want to make the activity as successful as possible by building the largest possible circle of kids such that each kid in the circle is sitting directly next to their BFF, either to the left or to the right. Any kids not in the circle will watch the activity without participating.
+
+What is the greatest number of kids that can be in the circle?
+Input
+
+The first line of the input gives the number of test cases, T. T test cases follow. Each test case consists of two lines. The first line of a test case contains a single integer N, the total number of kids in the class. The second line of a test case contains N integers F1, F2, ..., FN, where Fi is the student ID number of the BFF of the kid with student ID i.
+Output
+
+For each test case, output one line containing "Case #x: y", where x is the test case number (starting from 1) and y is the maximum number of kids in the group that can be arranged in a circle such that each kid in the circle is sitting next to his or her BFF.
+Limits
+
+1 ≤ T ≤ 100.
+1 ≤ Fi ≤ N, for all i.
+Fi ≠ i, for all i. (No kid is their own BFF.)
+Small dataset
+
+3 ≤ N ≤ 10.
+Large dataset
+
+3 ≤ N ≤ 1000.
+Sample
+
+Input
+  	
+Output
+ 
+
+4
+4
+2 3 4 1
+4
+3 3 4 1
+4
+3 3 4 3
+10
+7 8 10 10 9 2 9 6 3 3
+
+	
+
+Case #1: 4
+Case #2: 3
+Case #3: 3
+Case #4: 6
+
+In sample case #4, the largest possible circle seats the following kids in the following order: 7 9 3 10 4 1. (Any reflection or rotation of this circle would also work.) Note that the kid with student ID 1 is next to the kid with student ID 7, as required, because the list represents a circle. 
+
+ 
+---------------------------------------------------------------------//
+//2016-04-01T09:33 ----------------------------------
+@academy @phase3 @daily_meeting 
+
+
+1- What you did to change the world yesterday?
+I read about Grunt, npm and gulp, Hoy they work together.
+
+2- How you are going to crush it today?
+I want to work with the RBY, I want to separate the server from the app, to release the RBY and also I want to automate the launch of the server.
+
+
+3- How you are going to blast through any obstacles unfortunate enough to be standing in your way?
+I'm going to work with Dario or Paulina to acomplish the task avobe
+
+ 
+ ---------------------------------------------------------------------//
+//2016-04-01T09:33 ----------------------------------
+@academy @phase3 @daily_meeting 
+
+
+1- What you did to change the world yesterday?
+I worked on the portal Effect, and it worked like in 60%, we had a problem with the command "tracks.forEach(t => t.enabled = !t.enabled);" because it doesn't pouse the transition, it redirect.  
+
+2- How you are going to crush it today?
+I will work with it, I will try to solv the redirecting, and also I'll try to set the color to the portal.
+
+3- How you are going to blast through any obstacles unfortunate enough to be standing in your way?
+I'm going to work with Paulina to acomplish the task avobe. Also I'll apply the pomodoro technique.
+
+ 
+ ---------------------------------------------------------------------//
+//2016-04-23T18:49 ----------------------------------
+@academy @phase3 @ubuntu @fixing_issue @ubuntu_installation 
+
+I got a problem while booting from the USB: missing parameter in configuration file, keyword: path
+ 						gfxboot.c32: not a com32r image boot
+I found the solution here:
+http://askubuntu.com/questions/544414/missing-parameter-in-configuration-file-keyword-path 
+
+but in summary is just to press TAB and write live
+ 
+ ---------------------------------------------------------------------//
+//2016-04-24T14:31 -----------------------------------------------------
+@git @rebase @self_training
+
+so far I've learnd the rebase concept. there is no rebas or marge. you certaly are going to merge, the question is if are youy going to regabe first.
+Rebase is like lying a little, we re order the commits lo mek'em to look nicer. What it does is to coppy all the commist made in the topic branch and re doit on the maste rbranc (if you pionter it like that)  
+
+there are "two" rebases, the "git rebase" and "git rebase -i"
+as far I know both works for makeing the history of the commits cleanner, but in diferents ways. the interactive is used when you are ging to share the repo in github
+for example. the normal rebase does the change in the history but the utility of this are two:
+
+-making the histroy cleare
+-making possible to execute te integration test in the topic branch, because of the nature of rebase, before we merge to master , the topic branch already have 
+all the commits of master, becaus it place on the top of it.
+
+example: we make 2 barnches form master: issue1 and issue2, it would lok something like this
+
+|  issue1 
+|/ issue2
+|  master (head)
+
+
+if we mearche isue 1 into master ussing --no-ff (it makes that the merge is done recurively) it would look like this
+|  master, issue1
+|\
+|  comiits of issue1 
+|/ 
+|/ issue2
+
+if we merged issue 2 like we did before it would looks like this
+
+|  mater issue 2
+|  \ 
+|   \	
+|  commit issue 1 merged into master issue 1
+|\  /
+|  comiits of issue1 
+|//
+|/ 
+  
+but id doesent look good and it says we worked in a branch wile we had another branch opened. so with git rebase master (with head in issue 2) and ten megring in master like this git marge --no-ff issue2 it will look like this
+
+|  mater issue 2 
+|\	
+| commit issue 1 merged into master issue 1
+|/
+|\  
+|  comiits of issue1 
+|/
+|
+  
+like we had finished working on issue 1 when we started working on issue 2
+
+ ---------------------------------------------------------------------//
+//2016-04-23T17:47 -----------------------------------------------------
+@academy @phase3 @git @upstream @git_remotes @push_defaults
+
+there is a directory called .git that is hiddn and it is the repo itself. It has a dir called object, which store among other files, one for te contet one for teh commit and on for the name of the file, One dir per file, and oe dir per commit, and also one dir per content, but if the contet is te same it is stored only once.
+Git make the work compressing it and it does it well. but not so well with bin files.
+
+there is also a file named config, wich is the configuration in the local level.
+
+[core]
+	repositoryformatversion = 0
+	filemode = true
+	bare = false
+	logallrefupdates = true
+*[remote "origin"]
+	url = https://github.com/CarlosMiguelCuevas/gitUnderTheHood.git
+	fetch = +refs/heads/*:refs/remotes/origin/*
+**[branch "master"]
+	remote = origin
+	merge = refs/heads/master
+***[branch "feature1"]
+	remote = origin
+	merge = refs/heads/feature1
+
+* this part was added when we add the remote with this command 
+git remote add origin https://github.com/CarlosMiguelCuevas/gitUnderTheHood.git
+
+it tell us that there is only one remote if we add more remotes git remote add new_remote https:...
+there will be another remote section
+
+
+** this section refres that the brach master has it's own default remote, if we type git push on master it will upload the changes to origin, in the branch master
+to do this we typed the command :
+	-git push -u origin master
+at the biginig.
+Because if we type git push origin master it would push teh changes to the master barnch in origin but the section abvobe wouldn't be created, and "git push" would throw an exception
+
+**the command:
+	-git push --set-upstream origin feature1
+is another wey to create the brach section within the default remote and barnch to push wen execute the command git push on that branch
+
+
+Git by default if you type git push it will try to push all the changest from all the branches to all the branches in the upstream.
+to make that the git push only push the brancho we are at, we have to set the global config push.default to simple like this: 
+	-git config --global push.default [simple|match]
+
+----------------------------------------------------------------------//
+
+//2016-04-23T17:47 -----------------------------------------------------
+@solve_problems @ubuntu @display_manager @gnome_unity
+
+I decided to change the display manager from unity to gnom. I installed the gnom-shell and also the ubuntu-gnome-desktop
+and the I run the command sudo dpkg-reconfigure gdm and it showed a list to pick the desired manager and I picked gmd.... 
+but it messed up, and at the end it did't isntall well, and it looked ugly so I uninstalled the shell and th egenome-desktop, but O had problems
+I foun the solution here:  
+
+http://ubuntuforums.org/archive/index.php/t-2299095.html
+-----------------------------------------------------------------------//
+
