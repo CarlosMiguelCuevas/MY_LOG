@@ -631,4 +631,59 @@ I foun the solution here:
 
 http://ubuntuforums.org/archive/index.php/t-2299095.html
 -----------------------------------------------------------------------//
+//2016/04/25T20:20----------------------
+@Brightness @ubuntu_setup
+I had trubles in the past seting the brightness up, but, now i found the solution very easy.
+here: http://itsfoss.com/fix-brightness-ubuntu-1310/
+
+just add a file called "20-intel.conf" at "/usr/share/X11/xorg.conf.d/"
+
+and within a wrote:
+
+Section "Device"
+        Identifier  "card0"
+        Driver      "intel"
+        Option      "Backlight"  "intel_backlight"
+        BusID       "PCI:0:2:0"
+EndSection
+
+and thas all
+
+----------------------------------------//
+//2016/04/30T16:11----------------------
+@Environment_variables @ubuntu_setup @$PATH
+
+I learned that there are a lot of propts in lunux, depend on which are you using is the file wich is loaded. in the bash the .profile file is loaded. I use zsh wich is another comand Line, so it load the file .zshrc. it suposed that the file /etc/zsh/zshenv is used to load the environment variables, but it didnt wrk sfor me, I use the file ~/.zshrc to set the environment variables
+
+---------------------------------------//
+//2016/05/15T16:50---------------------
+@Git @Github @cherry-pick @stash @tags
+
+I learned that in git we can use tags to mark release branches like v1.0.0 and we make this with: git tag -a "message" with out the -a is a simple tag and it doesent provide more info. we can checkut tags  and int make  a branch from that commit. we upload a tag to git by git push --tag
+
+I also learned that stach is a command used to re-do changes to severla branches, it takes all of the files that ar not commited with the command: git stash. and with the command: git stash applay we can put those changes in the desired branch, but the changes saty in teh stack. with: git stash pop apllay the changes to the branch an also take them out of teh stack.
+
+With the command: git cherry-pick {hash number of commit} we can re-do the commit in other branch, if we add the flag -n to teh command git cherry-pick -n 65372SDd we spesify that the changes don marge only stages.     
+---------------------------------------//
+//2016/05/15T23:58---------------------
+@Git @Github @revert @commit --amend @reset @reflog
+
+I learnd how to do and re-do and un-do thing with git:
+
+Firs of al, there are two tipes of history in git, the public and the private, depend on which of them you are working with, is the method to undu thig you are going to use. the public history is the one you sahre with others, I mean when you push your commits to github, this commits that conform your history are public, so those commits are consider public history. The private history are the commits you havent share to other yet, I mean the comits that arent on github. 
+
+*If you are dealing with public history you shuld only use revert, this is teh command: git reverse {hash of the commit}. what this command do is to create another commit doing exactly the oppsite things of the commit you entered in the command. This is a safe way to un du things, it is not clean but it is safe.
+ 
+If you are working with private history there are more command that you can use: 
+
+*firs the git commit --amend. This command do 2 things: it can fix the las commit you did, i mena the mesage you typed, if you make a typo, you can fix it with git commit --amend. Also if yo made a commit and then yo add mor changes ans you want them in the same commit, you only have to add them to the sage area en then use the git commit --amend.
+
+*If you wnat to change another commit that is not the las one, you can not use git commit --amend, you can use git reset. with his command you indicate how many comits you wnat to work with lak this (3 in this example) git reset HEAD~3. An there are 3 type of resets: --hard, --soft, and --mixed(the default one) the --hard erese all the files hat were added in those commits and arrese all the chages made in this commits, like id haven exist. the --soft option makte all teh changes files or added to the sage area. and te default put them in the untracked area or marked like modified but not satged. git reset [--soft |--hard| {--mixed}] HEAD~1
+
+*the is something called reflog, tha shows all the commits made, even the deleted ones with git reset. this is helpful to bring files from deth. it shows the hash to work with. but there are some rules: you have to be working in the same computer; the git trash colector shouldent be invoked explicitly; it has to be resently tant 30 days. knowing the hash yo can use git reset {#hascommit} but thsi birng the head to this int and if you have oter commits mad ther are erased. Other option is to use cherry-pick to select the commits you want to re do on the barnch you are working on or you can checkout the hash and tehn make a barnch from taht chekut an then make a merge or a rebase to include the changes to the master branch. just to recall the rebas is made like this. in the branch hat you want to re base git rebase master, to make it s base the top of master. the benefits of this si that the new barnch has all the features ans test of master ad yo can run teh tasets.
+
+*finally the git rebase -i (intercative) it is used to change the comits, we can throw some comist, or we coan re name comits, but is commonly used to de squash before sharing the history to others using for exapme github. the command is the following: git rebase -i HEAD~3 (for work with 3 commits) and is shows up a menu with instructions. to do teh squash we mark wit r or  
+  
+---------------------------------------//
+
 
