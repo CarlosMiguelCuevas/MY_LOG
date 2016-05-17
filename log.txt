@@ -685,5 +685,17 @@ If you are working with private history there are more command that you can use:
 *finally the git rebase -i (intercative) it is used to change the comits, we can throw some comist, or we coan re name comits, but is commonly used to de squash before sharing the history to others using for exapme github. the command is the following: git rebase -i HEAD~3 (for work with 3 commits) and is shows up a menu with instructions. to do teh squash we mark wit r or  
   
 ---------------------------------------//
+//2016/05/16T19:38---------------------
+@android @gridle @lamda_function
 
+I included in the gradle file the next code
+ buildToolsVersion "24rc2"
+ 
+ and  
+ jackOptions {
+            enabled true
+        } 
+ inside defaultconfig
+ to use lamnda and java 8       
+--------------------------------------//
 
