@@ -685,5 +685,27 @@ If you are working with private history there are more command that you can use:
 *finally the git rebase -i (intercative) it is used to change the comits, we can throw some comist, or we coan re name comits, but is commonly used to de squash before sharing the history to others using for exapme github. the command is the following: git rebase -i HEAD~3 (for work with 3 commits) and is shows up a menu with instructions. to do teh squash we mark wit r or  
   
 ---------------------------------------//
+//2016/05/22T21:46---------------------
+@academy @pahse3 @android @layouts @Hierarchy_Viewer
+
+A layout is a frame to organize the elemnets of the view in a treee form. ther are four layouts: Linear (vertical and horizontal), relative, table, and frame.
+The first one organize the elements in a column, onw benith the otehr; or in a row one next to each other. the relative let you to put the view in relation to the parten or siblings views. the table let you put the elements like in a table and the lastone let you put on elmeento infron the other.
+
+the share some attributes: size, padding and margin, gravity: the firstone is the higth and the width, it can be match parent to ocupate the same space tahn teh parent, or wrapview to wrap the content of teh view; even you can set the size in dp (density-independent pixcels). The padding is the space from the border to the content of the view elemnt. margin is the space form the bordert o the parent. graviti is used to postion the elemnet, there are two of them: gravity and layout_garvity: the firstone is the position of the content inside the view and the second is teh posotion of teh view i relation to the parent.
+
+The relative layout has a porperti call something like "if missing" that let us align the view to teh parent incase the view we are align to is not present. visiviliti = "gone"
+
+The frame layout is useful for views that overlap one to eachother. It has a property called android:foreground="@drawable/" tha allow us to put the frame around the present frame.
+
+The linear layout has an atribute weight, that letous share an space among some childviews, waht it does is that sums up all the values of weight and teh divided to the number of teh element and tas te space taht the childview desrve: exaple view1 ahs weight=1,  view2 has weight=2, so view1 will have 1/3 and teh second 2/3. if using 
+
+The tableLayout us very useful, it behaves like a table in HTML. the elemets are placed inside <TbaleRow>. yo can use android:span to convine two cells and you can use android:column ti specify wher to put teh element those paaremters are inside the elemnt within the TableRow ettiquete. There are also the android:shrink, android:strech, collapsing, the fist one is used to make the table fit into the screen. you may asign the value "*" to make android decide teh spaces or you can set the specific column to mak taht column mor haight, and then te rest of teh elements of teh row you can asign teh height to "match_parent". The seconsd one is sued to make the table to fill the screen, if you set the specific column tat column will get mor space to fill te parent, if you set teh value "*" all the cellas will strech to fill te parent; yo can also specify which columns are teh onas to strech + "1,2,3". finally the thirdone is used to hide an specific column.  
+
+there is a property called weightsum that is used to defin the sum of teh weigth, and that way yo can asign a fracton of space ti a single view.
+
+Hierarchy viewer is a useful tool to see the tree of the views. here is teh github to us it:
+ https://github.com/romainguy/ViewServer 
+---------------------------------------//
+
 
 
