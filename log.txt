@@ -706,6 +706,17 @@ there is a property called weightsum that is used to defin the sum of teh weigth
 Hierarchy viewer is a useful tool to see the tree of the views. here is teh github to us it:
  https://github.com/romainguy/ViewServer 
 ---------------------------------------//
+//2016/05/16T19:38---------------------
+@android @gridle @lamda_function
 
-
+I included in the gradle file the next code
+ buildToolsVersion "24rc2"
+ 
+ and  
+ jackOptions {
+            enabled true
+        } 
+ inside defaultconfig
+ to use lamnda and java 8       
+--------------------------------------//
 
