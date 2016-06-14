@@ -761,6 +761,7 @@ we can use the "Transaltor Editor" to make this file and set the ranslation os a
 
 We should place some cometns in teh string files to tell the tarnsator how long the view is and tho pich teh correct transat of the word. this is the convetion:
 
+<!-- coment about teh string [CHAR LIMIT=23]--> 23 is an example
 
 if there is a string we dont want to translate we can use place holders inside the string tag, like this: 
 <string name="name">Name: <xliff:g id="costumers_name" example="Carlos">%s</xliff:g></string>
