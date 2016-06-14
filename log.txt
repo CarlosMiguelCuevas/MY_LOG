@@ -719,4 +719,65 @@ I included in the gradle file the next code
  inside defaultconfig
  to use lamnda and java 8       
 --------------------------------------//
+//2016/05/16T19:38---------------------
+@android @TextView @ImageView
+
+I learned a cuple of things, first sp (scale independent pixels) is like do but for thext only becaus it is relative to the size set in the divice.
+an mdpi = medium dencity device = 160pix/inches
+an xxdpi = extra extra density device = 480pix/inches
+butons recomendedt to 48 x 48 dp minimum.
+
+about the text view, you dont have to set the textsice directly you can use :
+
+android:textAppearance="?android:textAppearanceLarge" or small or medium to set the size but also the color. it is a pro tip
+
+center != centerCorp in teh imageview. th centerCorp sacel the image to fit from border to border. 
+  
+--------------------------------------//
+//2016/05/16T19:38---------------------
+@android @Views @XML @xmlns
+
+there is an atribute that we must place in the root view (View Group) called xmlns, its value is fixed, xmlns:android="http://schemas.android.com/apk/res/android".
+
+xmlns means xml name space, it is used to identofy the attributes defined by android, this is because you can define your own atributes, thsi way we avoid conflicts. basicali this attribute allaw us to write the android: prefix in teh atributes, becasu is a shortcut to the url we place at the begining.
+ 
+--------------------------------------//
+//2016/06/13T21:31---------------------
+@android @Localice @Strings
+
+Localice your app means make it adaptable to the setting or characteristics of your device. could be the language, the size or the density. Taltking about the language, you must make a file under the res->Strings directory called strings.xml, wich stores all the strings of the app in this format:
+
+<resources>
+	<string name="name_of_string"></string>
+</resources>
+
+when we what to call this string within the layouts.xml we use "@strings/name_of_string". when we call thsi resource within teh java file we do it like this: 
+getString(R.string.name_of_string);
+R.type_of_the_resource.neam_of_resource
+
+one we get all the string within thi file we can create another file in teh same folder called strings-es.xml (es is for spanish) and within this file we place teh same strings but in spanich this way teh sistem takes the files that correspond with the configuration of teh system and we don hav to warry about the transaltion.
+
+we can use the "Transaltor Editor" to make this file and set the ranslation os all the strings. we can open thsi tooll by right clicking the string file ans selecting the "Open the translator editor".
+
+We should place some cometns in teh string files to tell the tarnsator how long the view is and tho pich teh correct transat of the word. this is the convetion:
+
+
+if there is a string we dont want to translate we can use place holders inside the string tag, like this: 
+<string name="name">Name: <xliff:g id="costumers_name" example="Carlos">%s</xliff:g></string>
+
+the Xliff:g tag set a place holder, we must set an Id and we may set an expale of teh string inside in teh exaple this is use to place a name during execution, but we can use this to set simbols that don't need transaltion like the degree sibbol, we just write the unicode code for the degree simbol. 
+
+we have to set the xml name space like this in the resorce tag:
+
+xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2" 
+
+wen we call the exaple string we do it a little bit different: 
+getString(R.string.name,string_to_place_in_the_placeholder_example);
+
+at last but not list we can use the 
+NumberFormat.getCurrencyInstance().format(string_to_format)
+library to set the format of teh current currency, this is usefull becaus it set the simbols of the currency depneding of the settings of the phone, dollar, euro etc... 
+--------------------------------------//
+
+
 
