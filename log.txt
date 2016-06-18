@@ -779,6 +779,105 @@ at last but not list we can use the
 NumberFormat.getCurrencyInstance().format(string_to_format)
 library to set the format of teh current currency, this is usefull becaus it set the simbols of the currency depneding of the settings of the phone, dollar, euro etc... 
 --------------------------------------//
+//2016/05/16T19:38---------------------
+@android @Style @theme
+
+I finished the course "android for bigginers", and at the end the showed us the use of the styles and teh themes.
+
+yo can applay an style to a specific view, it is useful, because you can separete the color, and padding or whaterver you want from the view and store it in a separet file. and re use those settings to another view, that waty you can up date evre view from a singlearchive. to do this, you have to decalre in the file Style.xml, within the tag resource a tag style, you have to define a name for that style. whithin thouse tags you declare items like this:  <item name="android:layout_width" >wrap_content</item>
+the name is the exact property for the view, and te content of teh tag is te value of the atribute. and to use that style un a view you call it lik this: 
+style="@style/name_of_style", as easy as this.
+
+In the other hand we have the Themes, this are declared in teh same file than the style, but this configuration i sapplied to the whole app, or a whole acctivity, that is set un the AndroidManifest.xml,  android:theme="@style/AppTheme" with this atribut in the activity tag or in teh aplication tag.
+The android L broght with it the materials theams, theare are 3: 
+@android:style/Theme.Material (dark version)
+@android:style/Theme.Material.Light (light version)
+@android:style/Theme.Material.Light.DarkActionBar
+
+and in order to use it in older devices we have to use the compat version:
+Theme.AppCompat.
+Theme.AppCompat.Light
+Theme.AppCompat.Light.DarkActionBar
+
+we set this in the parent aattribut of the style tag, this way we get all the config of those themes. and within the tags we overide the orpertis we like, like this:
+	<item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+
+this are 3 of teh main atribs to be modify, the firstone is the color of teh action bar. teh second is the color of teh state bar. and the third is te color of sertain views like checkboxes.
+
+inthe examples we defined the Hex color in a file named color i  the res.values folder
+
+this way all the app has teh same look and feel
+
+
+
+
+--------------------------------------//
+//2016/06/18T14:37---------------------
+@android @Testing
+
+Thera are two tipes of thesting in android: Unit testing and integration testing.
+
+Unit testing divides in two, the local tests and the instrumentation testing. The local tests are the one that runs in the JVM, and doesn't need any resource from the android framework, or you can mock it easily. The other ones are the ones that runs on the device because they need resources from the android framework. to use this, we have to specify this in the gradle file: 
+
+unit test, mockito is to mock the resources
+dependencies {
+    // Required -- JUnit 4 framework
+    testCompile 'junit:junit:4.12'
+    // Optional -- Mockito framework
+    testCompile 'org.mockito:mockito-core:1.10.19'
+}
+
+this are the dependencies needed for the instrumented tests
+
+android {
+    defaultConfig {
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+    }
+}
+
+dependencies {
+    androidTestCompile 'com.android.support:support-annotations:23.0.1'
+    androidTestCompile 'com.android.support.test:runner:0.4.1'
+    androidTestCompile 'com.android.support.test:rules:0.4.1'
+    // Optional -- Hamcrest library
+    androidTestCompile 'org.hamcrest:hamcrest-library:1.3'
+    // Optional -- UI testing with Espresso
+    androidTestCompile 'com.android.support.test.espresso:espresso-core:2.2.1'
+    // Optional -- UI testing with UI Automator
+    androidTestCompile 'com.android.support.test.uiautomator:uiautomator-v18:2.1.1'
+}
+
+the integration test are made with the UI and it can be devided in two: the locals and the ones that interacts with oters app.
+
+The locals UI tests are made using Espresso a framework test, it dependencie is decalred avobe. it allows preforming clikc and so in the UI app.
+The second kind of tests are amde unsing the IU Automator, this is diferent taht espresso, becasu it can interact with the UI of others app using the UIautomatorviwer tool, we can acces this tool in the /home/carlos/Android/Sdk/tools, if we add it to the $PATH environmentvariable we can use it from eny other directory. it lounches a tool that can take an screenshot for the current app, and it give us the ides and we can perform actions or comapre the content value.
+
+the harmcrest library is used with teh asetrions in all the mentioned tests, because it provide a sintaxis easier to reed and more flexible. for example teh asertion change like this: assertTaht(expected_value, is(real_value)) and we can negate simpli adding the not(), assertTaht(expected_value, not(is(real_value))) alik thsi we can creat a complex sentence and the negat it result.
+
+--------------------------------------//
+//2016/06/18T15:03---------------------
+@android @gradle @ADB @AVD
+
+AVD and ADB sounds alike but they are totally diferent:
+The AVD is the one that lets us cerat an emaulated device: Android Virtual Device
+ADB(Android Bebug Bridge) is a command line tool, wich lets you communicate with an emulator instance or with the plugged device.  
+Android uses gradle, a test manager, taht build the app into an APK, we can use the ADB to install the APK in the device and also we can run it from the command line, we can find this tool in the floder /home/carlos/Android/Sdk/platform-tools, if we add it to the $PATH variable we can us it from anywhere.
+
+ Command Line Tool Commands
+The usage of these commands is entirely optional. The result is that same as clicking the Run button in Android Studio.
+
+chmod +x gradlew - This command only needs to be run once and is used to give gradlew the correct execute permissions.
+./gradlew assembleDebug - This command will compile the code.
+adb install -r app/build/outputs/apk/app-debug-unaligned.apk - This command will install the APK. With the -r flag it will overwrite any prior installed versions. Note if you have more than one device, you will need to use the -s flag right after adb to specify the serial number of the intended device.
+adb shell am start -n com.example.android.sunshine.app/com.example.android.sunshine.app.MainActivity - This command will actually run the app.
+
+--------------------------------------//
+
+
+
+
 
 
 
