@@ -874,6 +874,69 @@ adb install -r app/build/outputs/apk/app-debug-unaligned.apk - This command will
 adb shell am start -n com.example.android.sunshine.app/com.example.android.sunshine.app.MainActivity - This command will actually run the app.
 
 --------------------------------------//
+//2016/06/19T17:09---------------------
+@android @RecyclerView @adapter @ViewHolder
+
+to display a list of objects in the screen, we could use a ScrollView to contain a groupview, and inside thsi we could place all teh items we need, but this aproach is expensive, all the obajects would be in memory, which is not good. the aproach we are looking for is the ona that can creat the objcts just in time wen we scroll and also can re use the created view. in this aproach we use a RecyclerView that is an improvement to the ListView, it is better with a larga dasa set. to use thiswe have flow this steps:
+
+-Create anther layout wich will be the structure of the item in the list.
+
+-use the RecyclerView view in the layout, to us this, we must place a dependencie in the build,gradele file:  compile 'com.android.support:recyclerview-v7:23.0.+'
+
+-in the oncreate method (or in oncreateview in fragments) we have to get teh reference to the View mentiones above. using findViewById() we store that reference in a var type ReciclerView: RecyclerView mRecyclerV = findViewById(R.id.Id_of_the_view). Then we must set it the adapter and the layoutmanager: mRecyclerV.setLayoutManager() and mRecyclerV.setAdapter(New adapter(list data_set)). we can also set  mRecyclerV.setHasFixedSize(true); if we know that tha size on teh screen of the view wont shange with the elemnetos of the data set.
+
+-To set the layoutAdapter we can use one already built: new LinearLayoutManager(getContext()); thear are also other type like grid and costume.
+
+-To set the Adapter, is the triky part. an adapter is the intermediate between the data set and the view (in theis case the recyclerview) who displays the data. the adapter is a clas wich extends from RecyclerView.Adapter<ViewHolder> It is a generic and must use a clas that extends from RecyclerView.ViewHolder. It follows a design patter called ViewHolder design pattern. which means that it uses a clase that extends from RecyclerView.ViewHolder. usually it is an inner class. This class taht extends from viewHolder, is used to get the reference to the item and its childrens in the recylcer view, it gets the view in teh constructor. The outerclass, the one wich extends RecyclerView.Adapter must overide three methods, all of the used by the layoutmanager at sertain time, here is an snipet: 
+
+   //it is used by the layout manager. simply create the object of the view holder
+    @Override
+    public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+
+        View card = LayoutInflater.from(parent.getContext()).inflate(R.layout.list_item_forecast,parent,false);
+
+        return new ViewHolder(card);
+    }
+
+    //it is used byt the layout manager to replace the data
+    @Override
+    public void onBindViewHolder(ViewHolder holder, int position) {
+        holder.mTextView.setText(mDataSet.get(position).getForecast());
+        holder.mImageView.setImageResource(mDataSet.get(position).getImage());
+    }
+
+    //it is used by the layout manager
+    @Override
+    public int getItemCount() {
+        return mDataSet.size();
+    }     
+
+The last is used to know the number of elemnets of the data set. we get the dataset becuse in the constructor of teh adapter we recived it.
+on createViewHolder, only creates the view, to do this we must call new viewHolder (the constructor of viewHolder) but it recives a view so, we must inflate this view befor calleing teh constructor, here we use the layout created for teh item on teh list. The onBindViewHolder is used to change the content of teh view item list, it get the viewholder view and teh positions, and we have acces to the attribs of that veiw becase we declared publics inthe viewholder, and use the position index to get the info for teh dat set and then set it to de correspond attribute.
+
+and thast all.
+
+--------------------------------------//
+//2016/06/19T17:09---------------------
+@URI @URL @URN @WebService @RESTful @SOAP @API
+
+First of all the web service is a way to intercat two diferents applications through internet, no matter the language it is bult with, nor the OS. it is devided in two: the big web service and the REST web services. The big one uses SOAP, this uses a lot of rules and standars, Simple Object Access Protocol.
+REST (Representational State Transfer) is an architecture like server-client, and the web services based in thisone are called RESTful. it is based in the HTTP requests, the idea is that the GET call alwas return an JSON or an XML. but you can also use post or delet or put, buet usually teh servers blocks thsi commands.
+
+API stands for application programming interface, there are a lot of tipes of it, the SO supplies apis to make the software development smootly, also thera are apis provided vby sertain producers like samsung to intercat with the components. API provide a serie of buld bloch to use in the app and it gave us the correct way to comuncate other aplicatiosn (SO, drivers). But an special kind of apis are the WEB API or REST API, that are teh same that the restful web service, it returns an Json or XML.
+
+Uniform Resource Identifier
+URI
+Uniform Resource Location
+URL
+Uniform Resource Name 
+URN
+
+are confuising but, the firsone conatins evritiong, it is wen we can identify the resource by anme and also we can say hoy to get it. the URN only provides the name of it
+and teh URL only provides the way to gat the resource.
+
+
+--------------------------------------//
 
 
 
