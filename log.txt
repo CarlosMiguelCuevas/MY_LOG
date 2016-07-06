@@ -937,6 +937,98 @@ and teh URL only provides the way to gat the resource.
 
 
 --------------------------------------//
+//2016/07/05T23:57---------------------
+@android @ContentProvider @ContentResolver
+
+To store data in a DB we could use only an writtable instance of a db bunt is a good practice to write a content provider, this way we can shar data trough apps, and widgets and so.
+first I will explain the things we need to write in the db without the content provider, and the i wil explayn the way of doing it with the content provider.
+
+but firest, a content provider is a layer of absctarction used to conect the source of thata to the Ui or other app or a widget or so.
+
+first we need a <<Contract CLass>>. this clas contains an inner class per every table of the db, in my exaple, two, evry class implements the BaseColumns interface, because this way we have the _ID column by defoult. In those innerclass we register the name of the table's columns like this:
+
+ public static final String COLUMN_LOCATION_SETTING = "location_setting";
+
+
+We need a <<DBHelper Class>> in my example we called it WeatherDbHelper an it extends SQLiteOpenHelper. we use this clas to build the database wen is udes for the first time. we define constructor like this   
+    
+    private static final int DATABASE_VERSION = 2;
+
+    static final String DATABASE_NAME = "weather.db";
+
+    public WeatherDbHelper(Context context) {
+        super(context, DATABASE_NAME, null, DATABASE_VERSION);
+    }
+
+it gets the context and call the super constructor sending the context and also the name of the Db and teh version. this version is chnaged wen we refeactor the structure of the tables, it don't depends on the version of the app.
+
+we overide the meothod onCreate(SQLiteDatabase sqLiteDatabase)
+we use this method to build teh tables of teh DB. we define the query to build the table and the we use the recieibed parameter (an instance of the SQLiteDatabase) to buil the tables of teh DB with: 
+
+sqLiteDatabase.execSQL(SQL_CREATE_LOCATION_TABLE);
+
+the parameter is an String, we build that string using the name of teh columns defined in the Contract.
+
+  
+  final String SQL_CREATE_WEATHER_TABLE = "CREATE TABLE " + Contract.InnerClass.TABLE_NAME + " (" +
+         
+                Contract.InnerClass._ID + " INTEGER PRIMARY KEY AUTOINCREMENT," +
+
+                Contract.InnerClass.COLUMN_LOC_KEY + " INTEGER NOT NULL, " + ...
+
+There is also a method of teh super clas called OnUpgrade(SQLiteDatabase sqLiteDatabase, int oldVersion, int newVersion)
+and it is called wen we change the version number of the DB declared in this class. if we add columns, we must alter the table if we want to preserv the dat, in my case I don't mind if the data is lost becaus I can retreive it form internet. so in this method i destroy teh tables and call teh method on create explicitly because the DB already exist so I wouldnt call bay itself.
+
+if we use  
+
+SQLiteDatabase db = new WeatherDbHelper(this.mContext).getWritableDatabase();
+
+we get the writable instance and we can use it to insert or query the DB.
+
+if we want to insert data to the DB we use 
+
+db.insert(tablename, null, testValues)
+
+we send 3 patrams to it, the table name, null and the data to store. this 3rd pram is a  ContentValue object.
+a ConntentValue is a key-value structure, so we use te contract Class to get the name of te clumn as a Key and we use the vaue we want to insert aas a value in this structure.
+
+
+ ContentValues testValues = new ContentValues();
+        testValues.put(Contract.innerClass.COLUMN_LOCATION_SETTING, "SomeValue");
+
+the insert returns an int, the Id of the row, if it returns -1 means something went wrong.
+
+To query data from the db, we use again the writable instance and we call the method query()
+
+db.query(
+	WeatherContract.WeatherEntry.TABLE_NAME, //table name
+	null,                                    // a projection they call, it is the name of teh lomuns we want, is an array of strings
+	null,                                    // an Strig with the conditions without the value, but with a "?" instead. *
+	null,                                    // an array of lues for the conditions *
+	null,null,                               // i dont know 
+	null);                                   // the order  
+
+exaple * "ID = ? AND Date > ?"
+       * new String[]{"2","30/12/2000"}
+
+this method return a Cursor
+
+A cursor is an object tat contains the data from a ror or several rows we can iterate through it. moveToFirst() it is used to select the first row and returns a boolean to know if it has or not taht first line. we can acces the value with 
+Cursor.getString(indexOfColumn)
+Cursor.getColumnIndex(StringOfColumnName).
+
+after ll of this we must close the db and teh cursor to prevent memeory leaks.
+db.close
+cusrosr.close
+
+Now If we use the content provider it is a little bit harder but it pays off
+
+
+
+
+
+
+--------------------------------------//
 
 
 
