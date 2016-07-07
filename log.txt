@@ -938,7 +938,7 @@ and teh URL only provides the way to gat the resource.
 
 --------------------------------------//
 //2016/07/05T23:57---------------------
-@android @ContentProvider @ContentResolver
+@android @DataBase
 
 To store data in a DB we could use only an writtable instance of a db bunt is a good practice to write a content provider, this way we can shar data trough apps, and widgets and so.
 first I will explain the things we need to write in the db without the content provider, and the i wil explayn the way of doing it with the content provider.
@@ -1024,11 +1024,124 @@ cusrosr.close
 Now If we use the content provider it is a little bit harder but it pays off
 
 
-
-
-
-
 --------------------------------------//
+//2016/07/06T10:20---------------------
+@ContentProvider @ContentResolver
+
+If we want to use a content provider we must use the content resolver, it is the one who resolve wich content provider are we going to use to fetch the data.
+to make our Cotnet priovider we have to modify the COntract and Create a PrividerClass. this class extends ContentProvider.
+
+We use URI's to accede the functionalities within the Provider class, in our contract, we will decalre the nesesary strings to buil the valids URI's, a URI have a scheme, an authority, and parameters. 
+
+ public static final Uri CONTENT_URI = BASE_CONTENT_URI.buildUpon().appendPath(PATH_LOCATION).build();
+
+CONTENT_URI is defined within the inner class, and we buildit using the uri and teh string declared in tne outer class.
+
+there is a convencion, that the content provider must declare waht type of uri return every query function (an dir or just a single row) we declare in the inner class teh sting acording this two options.
+
+   public static final String CONTENT_TYPE =
+                ContentResolver.CURSOR_DIR_BASE_TYPE + "/" + CONTENT_AUTHORITY + "/" + PATH_LOCATION;
+   
+   public static final String CONTENT_ITEM_TYPE =
+                ContentResolver.CURSOR_ITEM_BASE_TYPE + "/" + CONTENT_AUTHORITY + "/" + PATH_LOCATION;
+
+and also we can declere functions to build uris or strings taht the provider will use.
+
+To create the provider we just follow this steps: 
+
+--define the URI's for the UI's for example, in sunshineAPP, we have the list and the detail, so we need a URI that make the Provider react to fetch a list of data (location) and other to fetch an specific data (day and location). and to insert and delete form the table (we have 2) we need a URI (so we need 2, one per table).
+
+--define the int constnt to use in the switch statements
+
+is easier if we use Ints insted of compare the urI everytime.
+
+so we declare an int per valid URI 
+
+  static final int WEATHER = 100;
+  static final int WEATHER_WITH_LOCATION = 101;
+  static final int WEATHER_WITH_LOCATION_AND_DATE = 102;
+  static final int LOCATION = 300;
+
+To compare we need to use a UriMatcher, it is a class that works like a Regex.
+
+ private static final UriMatcher sUriMatcher = buildUriMatcher();
+
+the method buildMatcher is declared i the class.
+
+within this method we instantiate the matcher and set it the valid uris
+
+  	UriMatcher matcher = new UriMatcher(UriMatcher.NO_MATCH);
+
+        // 2) Use the addURI function to match each of the types.  Use the constants from
+        // WeatherContract to help define the types to the UriMatcher.
+        matcher.addURI(WeatherContract.CONTENT_AUTHORITY,WeatherContract.PATH_LOCATION,LOCATION);
+	matcher.addURI(WeatherContract.CONTENT_AUTHORITY,WeatherContract.PATH_WEATHER,WEATHER);
+        matcher.addURI(WeatherContract.CONTENT_AUTHORITY,WeatherContract.PATH_WEATHER+"/*",WEATHER_WITH_LOCATION);
+        matcher.addURI(WeatherContract.CONTENT_AUTHORITY,WeatherContract.PATH_WEATHER+"/*/#",WEATHER_WITH_LOCATION_AND_DATE);
+
+notice that in the method addUri we are using the constnats decalred in the cntract. the first param is the authority, fllowed by the name of the table(defined in the contract) concatenated with the requiered placeholder for the apropiate parameter in the URI, Imean if teh urI is scheme/authority/"param1"/344 it will match with the las URI
+
+
+In the OnCreate we create an isntance to our DB helper, thsi way, we can get the instances to teh db and we can execute querys.
+
+--add the constnts of the condition/Selection of the querys. 
+private static final String sLocationSettingSelection = WeatherContract.LocationEntry.TABLE_NAME+ "." + WeatherContract.LocationEntry.COLUMN_LOCATION_SETTING + " = ? ";
+
+notice that we are building it again using the contract constants (tabl name and the name of the column), we use ? tho indicate that te params in the value param eill replace this "?".\
+
+--Last we implement the contentProvider overiding the methods:
+
+	-getType()
+	-query()
+	-insert()
+	-delete()
+	-update()
+	-bulkInsert()
+
+this methods uses a swtch statemnt, within it uses the matcher declared at the biginig to get te INT of the URI and tis int is evaluated in teh switch.
+
+example, within the query in the switch option:
+
+case WEATHER: {
+                retCursor = mOpenHelper.getReadableDatabase().query(
+                        WeatherContract.WeatherEntry.TABLE_NAME,
+                        projection,
+                        selection,
+                        selectionArgs,
+                        null,
+                        null,
+                        sortOrder
+                );
+                break;
+
+mOpenHlepr is teh instance cerated in te constructor
+
+we defien adefult  default:
+                throw new UnsupportedOperationException("Unknown uri: " + uri);
+
+in case the uri is invalid.
+
+at last we must register the cursor to listen when the data related to de uri is change.
+     
+retCursor.setNotificationUri(getContext().getContentResolver(), uri);
+
+
+in de insert or delete or udpate we call
+ getContext().getContentResolver().notifyChange(uri, null);
+to notify all the child taht somethig has change.
+
+
+The BulkInsert method is used when we need to insert an array of elements in a table and we don callll one by one the method insert
+
+
+To us this CpntentProvidder, we call the content resolver like this:
+
+	mContext.getContentResolver().methodToExecute();
+example
+	mContext.getContentResolver().bulkInsert(WeatherEntry.CONTENT_URI,cVVector.toArray(new ContentValues[cVVector.size()]));
+
+
+-------------------------------------//
 
 
 
