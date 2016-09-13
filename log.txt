@@ -1287,6 +1287,16 @@ in name we put the same name that we would put if we would create the file insid
 
 and that's it.
 -------------------------------------//
+//2016/09/12T17:42————————————————————
+@git @git_clean @git_stash
+
+First git stash. to apply changes and and not store them in the stack we use stash apply. if we want to apply the stash but keep them in te stack we use git stash pop.
+to list the show the stash os stash we use git stash list.
+to delete the items in this stack we use `git stash drop stash@{#index_of_stash_item}`.
+
+git clean is used to erase the untracked files. there are some flags we should use, `-n -d`, `-n` is to not do it, it only tells you what would the command do, if you use it, which archives it would delete. when we are sure about which file we are deleting, we must change the `-n` for `-f` it is force.
+ 
+-------------------------------------//
 
 
 
