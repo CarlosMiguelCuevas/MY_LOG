@@ -672,7 +672,7 @@ I learnd how to do and re-do and un-do thing with git:
 
 Firs of al, there are two tipes of history in git, the public and the private, depend on which of them you are working with, is the method to undu thig you are going to use. the public history is the one you sahre with others, I mean when you push your commits to github, this commits that conform your history are public, so those commits are consider public history. The private history are the commits you havent share to other yet, I mean the comits that arent on github. 
 
-*If you are dealing with public history you shuld only use revert, this is teh command: git reverse {hash of the commit}. what this command do is to create another commit doing exactly the oppsite things of the commit you entered in the command. This is a safe way to un du things, it is not clean but it is safe.
+*If you are dealing with public history you shuld only use revert, this is teh command: git revert {hash of the commit}. what this command do is to create another commit doing exactly the oppsite things of the commit you entered in the command. This is a safe way to un du things, it is not clean but it is safe.
  
 If you are working with private history there are more command that you can use: 
 
@@ -1297,8 +1297,80 @@ to delete the items in this stack we use `git stash drop stash@{#index_of_stash_
 git clean is used to erase the untracked files. there are some flags we should use, `-n -d`, `-n` is to not do it, it only tells you what would the command do, if you use it, which archives it would delete. when we are sure about which file we are deleting, we must change the `-n` for `-f` it is force.
  
 -------------------------------------//
+//2016/09/24T15:00————————————————————
+@reactive @rxprograming @rxandroid
+
+Reactive programming is a programming paradigm that follows the observer pattern and iterator pattern.
+Basically existe 2 objects the Observable and the subscriber.
+the observer can be carted out of anything and basically overrides a method called `call(subscriber)` and inside that method we have to call the observer.onNext(parameter) and observer.onCompelte().
+the we have to create the subscriber it overrides three methods, onNext, onComplete and onError. 
+
+we subscribe that subscriber with ObserbalmeInstance.Subscrive(subscriber) and that returns a subscription
+
+the subscription has two methods. the isSubscribed and unsubscribed this methods are called in the on pause method of the activity to manage the memory leak. and there are two methods ObserveOn and subscriveOn() those define in phish thread are we going to execute the code in the observable and where thread will be use to show the results (the ObserbeOn is for the main thread (where is going to be shown everting) and subscribeOn is where the ask will be executed) we use schedulers to define this threads.
+
+we can use operators to modify the beahiboir of t he observable. like filtering and making.     
+ 
+-------------------------------------//
+//2016/11/22T21:30————————————————————
+@java @inheritance @final
+use @Oberride is just a sanity check , for the compiler. In java every method can be overridden by default. the methods and field behave directly in inheritance, the method is gide by the instance type, the field is gide bye the reference type.  
+super is used to call members from the super class, to call the constructor is super(), by the fault super() is called from the constructor of the derived class.
+Paling about constructors, the default is the one without parameters, but if we define one we have to define very single constructor we need. so if wee ned a empty contractor we have to declare it. so hen we inherits and we don have the default constructor in the superclass we have to call explicitly the super() with the params it requires, and at the beginning of the constucror’s deiveclass. to chain constructors, we can call this() inside the constructor we want to chant with.
+
+we can modify the default behavior of inheritance with final and abstract.
+if we use final in a method we ar telling that that metod can NOT be overridden and if we us it in the las, that las can not be inherit. abstract is used to point with metod has to be inpm=lemnted by the derived class, we only code the sign of the metod not the body, and if a metod is abstract, the whole class must bi mac as abstract, and if it is abstract we can not creat instances out of it.
+
+the constructor of our derived class ALWAYS calls the constructor of the parten even though we don’t specify it.
+
+set a field as final, we are telling that after a value is set we can not change that value, it is set in the initialization field, inisailittion block or in the constructor. If we set finals static, the convention is to declare the final all caps, like this 
+final static int VARINT = 0; this is a constant and it is a member of the class not of the instance and is the same for all instances.
+
+-------------------------------------//
+//2016/11/22T22:20————————————————————
+@Strings @warpperClass
+
+Strings ar unmutables, every time we modify one, we crete a new one, so a better way to deal with strings is to use a string builder, StringBuilder sb = new StringBuilder(#capasity);
+sd.append(“string a ”);
+sd.append(“string b”);
+sb.toString();
+
+“string a string b”
+
+the warpperclass ar clases that warp the primitives values to make them objects.
+the are immutable, so, wen we modify 1 we are crating a new instance in reality. but there are certain values of the wrapper cals that points to the same instance wen created:
+int => -128 to 127
+short => -128 to 127
+byte => -128 to 127
+boolean => ture and false
+char => `\u0000` to `\u00ff`
 
 
+-------------------------------------//
 
+//2016/11/22T22:20————————————————————
+@Exceptions
 
+there are two types checked exceptions and unchecked exceptions, exceptions are thrown. all the exceptions we can handle are inherit from Exception. could inherit form Exception or from RuntimeException wich inherits form exception.
+
+Checked exceptions are exceptions that the compiler check before building your app, and if it is not handed it will complain. unchecked exceptions are the one that inherits from RuntimeException you don HAVE to handle in order to build the app.  when handling exceptions we must handling wit the catch from the more specific to the less specific because it catches te ones that belongs to its type.
+
+every method is responsable to handle the checked exceptions that might occur inside of it. this through a try-catch cause, or the throws sign. when overriding, we must be compatible with the super method if it throws an exception. 
+
+-------------------------------------//
+
+//2016/11/22T23:40————————————————————
+@Abstraction, @encapsulation
+Abstraction, is the process of taking away or removing characteristics from something in order to reduce it to a set of essential characteristics. something more specific and useful for the current scenario.
+
+Encapsultion is hide the proces the object floor to accomplish it wor and only show what you what to show, the interface.
+-------------------------------------//
+
+//2016/11/23T11:59————————————————————
+@NestedTypes @InnerClass @anonymusclasses
+
+all the types that are declared inside another type are nested types, classes inside interfaces, all interfaces declared inside class and clases marked as static declared inside classes, this doesn’t have a close relationship wit the encasing class, it is used to give structure and scoping. there are marquee as static and for that reason can’t access values inside the instance of the enclosing class this nested types are members of the class and apply access differs (default, private, public, protected). The Inner class is an special type os nested type, and it is a cals inside a class that is not marked as static, this way the instance of this innerclass ir close related with the instance of the enclosing class and has access to the vapes of this class.
+
+Annonimusclasses are innerclasses, an they have access to the members of the enclosing class. they are used to implement an interface or extend base class right in the moment, right in the declaration of a las instead of creat one class angivit a name, this is used when we need to use that new class just in one place. this is the syntax: new Interface_or_Baseclass(){definition of the class} . we use the empty constructor wen we implement an interface but with the inheritance we use any constructor amiable in the ase clase.
+-------------------------------------//
 
