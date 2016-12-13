@@ -1314,23 +1314,23 @@ we can use operators to modify the beahiboir of t he observable. like filtering 
 -------------------------------------//
 //2016/11/22T21:30————————————————————
 @java @inheritance @final
-use @Oberride is just a sanity check , for the compiler. In java every method can be overridden by default. the methods and field behave directly in inheritance, the method is gide by the instance type, the field is gide bye the reference type.  
+use @Oberride is just a sanity check , for the compiler. In java every method can be overridden by default. the methods and field behave directly in inheritance, the method is guide by the instance type (defined by the var type, I mean you see only the methods known but the var type, but if it is overrides it take te override method), the field is guide by the reference type (it takes the value of the field defined in the var type, it is not overridden bye the value in the New() object). If a method returns a field in the class and we override that method in the derived class, the value returned in the getter is the one define in the derived class not in the super class.   
 super is used to call members from the super class, to call the constructor is super(), by the fault super() is called from the constructor of the derived class.
-Paling about constructors, the default is the one without parameters, but if we define one we have to define very single constructor we need. so if wee ned a empty contractor we have to declare it. so hen we inherits and we don have the default constructor in the superclass we have to call explicitly the super() with the params it requires, and at the beginning of the constucror’s deiveclass. to chain constructors, we can call this() inside the constructor we want to chant with.
+talking about constructors, the default is the one without parameters, but if we define one we have to define every single constructor we need. so if wee ned a empty contractor we have to declare it. so when we inherits and we don have the default constructor in the superclass we have to call explicitly the super() with the params it requires, and at the beginning of the constucror’s deiveclass. to chain constructors, we can call this() inside the constructor we want to chain with.
 
 we can modify the default behavior of inheritance with final and abstract.
-if we use final in a method we ar telling that that metod can NOT be overridden and if we us it in the las, that las can not be inherit. abstract is used to point with metod has to be inpm=lemnted by the derived class, we only code the sign of the metod not the body, and if a metod is abstract, the whole class must bi mac as abstract, and if it is abstract we can not creat instances out of it.
+if we use final in a method we are telling that that method can NOT be overridden and if we us it in the class, that class can not be inherit. abstract is used to point with method has to be inplemnted by the derived class, we only code the sign of the method not the body, and if a method is abstract, the whole class must be marked as abstract, and if it is abstract we can not create instances out of it.
 
-the constructor of our derived class ALWAYS calls the constructor of the parten even though we don’t specify it.
+the constructor of our derived class ALWAYS calls the constructor of the paren even though we don’t specify it.
 
-set a field as final, we are telling that after a value is set we can not change that value, it is set in the initialization field, inisailittion block or in the constructor. If we set finals static, the convention is to declare the final all caps, like this 
+set a field as final, we are telling that after a value is set we can not change that value, it is set in the initialization field, inisailittion block or in the constructor. If we set finals static, the convention is to declare the fiel all caps, like this 
 final static int VARINT = 0; this is a constant and it is a member of the class not of the instance and is the same for all instances.
 
 -------------------------------------//
 //2016/11/22T22:20————————————————————
 @Strings @warpperClass
 
-Strings ar unmutables, every time we modify one, we crete a new one, so a better way to deal with strings is to use a string builder, StringBuilder sb = new StringBuilder(#capasity);
+Strings are unmutables, every time we modify one, we crete a new one, so a better way to deal with strings is to use a string builder, StringBuilder sb = new StringBuilder(#capasity);
 sd.append(“string a ”);
 sd.append(“string b”);
 sb.toString();
@@ -1363,14 +1363,66 @@ every method is responsable to handle the checked exceptions that might occur in
 @Abstraction, @encapsulation
 Abstraction, is the process of taking away or removing characteristics from something in order to reduce it to a set of essential characteristics. something more specific and useful for the current scenario.
 
-Encapsultion is hide the proces the object floor to accomplish it wor and only show what you what to show, the interface.
+Encapsultion is hide the proces the object follow to accomplish it work and only show what you what to show, the interface.
 -------------------------------------//
 
 //2016/11/23T11:59————————————————————
 @NestedTypes @InnerClass @anonymusclasses
 
-all the types that are declared inside another type are nested types, classes inside interfaces, all interfaces declared inside class and clases marked as static declared inside classes, this doesn’t have a close relationship wit the encasing class, it is used to give structure and scoping. there are marquee as static and for that reason can’t access values inside the instance of the enclosing class this nested types are members of the class and apply access differs (default, private, public, protected). The Inner class is an special type os nested type, and it is a cals inside a class that is not marked as static, this way the instance of this innerclass ir close related with the instance of the enclosing class and has access to the vapes of this class.
+all the types that are declared inside another type are nested types, classes inside interfaces, all interfaces declared inside class and clases marked as static declared inside classes, this doesn’t have a close relationship wit the encasing class, it is used to give structure and scoping. there are marquee as static and for that reason can’t access values inside the instance of the enclosing class this nested types are members of the class and apply access modiffers (default, private, public, protected). The Inner class is an special type of nested type, and it is a class inside a class that is NOT marked as static, this way the instance of this innerclass is close related with the instance of the enclosing class and has access to the values of this class.
 
-Annonimusclasses are innerclasses, an they have access to the members of the enclosing class. they are used to implement an interface or extend base class right in the moment, right in the declaration of a las instead of creat one class angivit a name, this is used when we need to use that new class just in one place. this is the syntax: new Interface_or_Baseclass(){definition of the class} . we use the empty constructor wen we implement an interface but with the inheritance we use any constructor amiable in the ase clase.
+Annonimusclasses are innerclasses, an they have access to the members of the enclosing class. they are used to implement an interface or extend base class right in the moment, right in the declaration of a las instead of creat one class and give it a name, this is used when we need to use that new class just in one place. this is the syntax: new Interface_or_Baseclass(){definition of the class} . we use the empty constructor wen we implement an interface but with the inheritance we use any constructor abiable in the base clase.
 -------------------------------------//
+//2016/11/23T11:59————————————————————
+@Encapsulation
 
+Encapsulation is all about making it easier for colleagues and other client programmers, including yourself in the future, to use the classes that you just wrote, with out knowing what you knew at the time you wrote the code. encapsulation has two parts: 
+-information/implementation hiding: is hide the inpmelentation of the code and only show the interface to intec=arct wit the API.
+-protection of invariants: ensure that the stat of your clases are always in a valid state, or almost imposible to turn into invalid states by accident.
+
+To accomplish this both rules we can follow:
+ 
+-CQS(Command Query Separation): is tho know that the functions can affect the state of the system (comands) or not affect anything (querys), this is being idempotent, this is not matter how many times it is run it willll NOT affect the state of the sistem. 
+-postel’s law (send and accept): is tho give guaranties that the inputs and the outputs will be valid according with the interface declaration. being open in the input and close in the output(This means that we must accept the input as wide as we can but the output must be very specific).
+
+some advices to accomplish this rules are:
+-separte the commands and the queryes. we can use queries inside commands though.
+-The commands return void
+-the queries always return something(the return must be valid, null is not a valid return), and pos be consisting all the return statements along the program. 
+-add the pre condition checks and postcondition checks to prevent invalid states, and providecorret return values.
+
+-------------------------------------//
+//2016/11/23T11:59————————————————————
+@SOLID @SRP @singleResponsabilityPrinciple
+ there should never be more that 1 reason for a class to change.   
+-cohesion: the relation of the methods inside the class (we aim for high cohesion, they must be strongly related in order to accomplish one propose only)
+-coupling: the dependency among clases, () we want loos coupling.
+Why we want solid? to deal with some design smells
+solid is te answer to some design smell:
+-rigidity: design difficult to change (dificulto to meet new requeriemnts)
+-fragility: code easy to break for not related programers
+-immobility : difficult to reuse
+-viscosity: difficult to do the right thing
+-needless complexity
+
+SRP(single responsibility principle)
+single responsability= a reason to change, separation of concerns. each class should do one thing and do it well 
+
+-------------------------------------//
+//2016/12/12T23:00————————————————————
+@SOLID @OCP @openClosePrinciple @compostion @aggregation @RAP_ResuseAbstractionPrinciple @RulOfThree @composit @Decorator @compositionoverInheritance
+
+“OPEN for extensibility Close to modification”
+
+composition vs aggregation. Composition is that the class owns another class and the second class does not have a propose without the first class. Aggregation in that a class uses another class but that class could be reuse somewhere else.
+
+OCP relay in abstraction:
+-inheritance/ template method pattern: child types overrides behavior of a base class
+-composition/ strategy patter: client depends on abstraction, provides a `plug in ` model, implementations utilize inheritance: client utilize composition. The client(code who orchestra the work) uses injected classes which  inherit or implement for a bese cals/interface and define the work done inside them, they are stored in a field so they are just used in that class, (composition) like plugins. The client exposes a way to revive new instances of new classes with new functionalities.
+
+The RAP isa principle that is not part of SOLID but is related, it says that the abstraction we creat should be implemented by more than one class. if it doesn’t, then we are miss abstracting.
+Abstractions are discovered not planning, we should start coding to address specific problem, and if we found that that code is duplicated we should resist the temptation to refactor thill we met the url of three. We programmers tend to create a general solution to specific problems, we shut start coding specific solutions and the discover te abstraction and refactor to generate a general solution(using abstraction). There all of there says that we shuldent refactor/abstract until we met three cases that fallow the panther that we want to refactor ?abstract, this because we now have enough samples to do a better job.
+
+ 
+
+-------------------------------------//
